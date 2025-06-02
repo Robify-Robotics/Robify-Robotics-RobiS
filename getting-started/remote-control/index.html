@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Remote Control - RobiS Robot Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Remote Control";
+        var mkdocs_page_input_path = "getting-started\\remote-control.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RobiS Robot Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Remote Control</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#step-by-step-instructions">🔌 Step-by-Step Instructions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sleep-mode">🛑 Sleep Mode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage-precautions">⚠️ Usage Precautions</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote-login/">Remote Login</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS Navigation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/ros-startup/">Driver Startup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/lidar-mapping/">2D LiDAR Mapping</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/lidar-navigation/">2D Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/cartographer/">Cartographer Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/depth-camera/">Depth Camera</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Autoware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../autoware/3d-navigation/">3D SLAM & Navigation</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RobiS Robot Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Remote Control</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="remote-control-setup-for-robis-robot">🎮 Remote Control Setup for RobiS Robot</h1>
+<p>This section describes how to use the remote controller to operate your RobiS robot.
+Remote control system includes a onboard receiver and a PS2 joystick remote controller, they both have red and green indicator lights. </p>
+<p>The joystick button description</p>
+<h2 id="step-by-step-instructions">🔌 Step-by-Step Instructions</h2>
+<p><strong>Power On</strong>  </p>
+<p>Turn on the robot by pressing the power button.</p>
+<p><strong>Switch on the controller</strong>
+ <br />
+<p align="center">
+   <img src="../../imgs/image2.png" alt="PS2 Switch" width="400"/>
+   </p></p>
+<p align="center">
+   <img src="../../imgs/image3.png" alt="PS2 Switch" width="400"/>
+   </p>
+<p>Both solid red and green lights indicate a successful connection.</p>
+<p><strong>Unlock Remote Control Mode</strong><br />
+<br />
+<p align="center">
+   <img src="../../imgs/image1.png" alt="PS2 Controller Diagram" width="400"/>
+   </p></p>
+<p>Every time after turning on the robot power, remote control needs to be unlocked.
+   - Press the <code>Mode</code> button.
+   - Then press <code>START</code> to activate remote control mode.</p>
+<p><strong>Controls Overview</strong></p>
+<table>
+<thead>
+<tr>
+<th>Button/Joystick</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mode</td>
+<td>Wake up / exit sleep</td>
+</tr>
+<tr>
+<td>START</td>
+<td>Enter remote control mode</td>
+</tr>
+<tr>
+<td>Left joystick</td>
+<td>Move robot forward/backward</td>
+</tr>
+<tr>
+<td>Right joystick</td>
+<td>Rotate robot left/right</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>Increase speed (max 1.5 m/s)</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>Decrease speed (min 0)</td>
+</tr>
+<tr>
+<td>Remote Indicator</td>
+<td>Flashing = pairing, Solid = connected</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 Other buttons currently have no assigned function.</p>
+</blockquote>
+<h2 id="sleep-mode">🛑 Sleep Mode</h2>
+<ul>
+<li>If unused for 5 minutes, the controller enters sleep.</li>
+<li>To wake it up, press the <strong>Mode</strong> button then press <strong>Start</strong> to unlock.</li>
+</ul>
+<h2 id="usage-precautions">⚠️ Usage Precautions</h2>
+<ul>
+<li>Ensure the remote controller receiver is plugged into the robot.</li>
+<li>Install batteries with correct polarity.</li>
+<li>When using multiple robots, match them <strong>one-by-one</strong> to avoid cross-control.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../introduction/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../remote-login/" class="btn btn-neutral float-right" title="Remote Login">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../introduction/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../remote-login/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>2D LiDAR Mapping - RobiS Robot Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2D LiDAR Mapping";
+        var mkdocs_page_input_path = "navigation\\lidar-mapping.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RobiS Robot Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/remote-control/">Remote Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/remote-login/">Remote Login</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS Navigation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../ros-startup/">Driver Startup</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">2D LiDAR Mapping</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#supported-mapping-algorithms">🧭 Supported Mapping Algorithms</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#launch-mapping-process">🚀 Launch Mapping Process</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#viewing-the-map-in-rviz">🖥️ Viewing the Map in RViz</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#save-the-map">💾 Save the Map</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lidar-navigation/">2D Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cartographer/">Cartographer Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../depth-camera/">Depth Camera</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Autoware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../autoware/3d-navigation/">3D SLAM & Navigation</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RobiS Robot Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">ROS Navigation</li>
+      <li class="breadcrumb-item active">2D LiDAR Mapping</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2d-lidar-mapping">🗺️ 2D LiDAR Mapping</h1>
+<p>Once the chassis, LiDAR, and IMU drivers are active, you can begin performing 2D LiDAR-based mapping using one of several supported algorithms.</p>
+<hr />
+<h2 id="supported-mapping-algorithms">🧭 Supported Mapping Algorithms</h2>
+<p>RobiS supports three common SLAM algorithms:
+- <code>karto</code>
+- <code>gmapping</code>
+- <code>hector</code></p>
+<p>You can configure the desired algorithm in the following launch file:
+<div class="highlight"><pre><span></span><code>~/catkin_ws/src/robot_start/launch/2d_mapping.launch
+</code></pre></div>
+ <br />
+<p align="center">
+   <img src="../../imgs/image17.png" alt="button" width="400"/>
+   </p></p>
+<p>Find the following line and update the default:
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;mapping_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;karto&quot;</span><span class="w"> </span><span class="na">doc=</span><span class="s">&quot;opt: gmapping,hector,karto&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div></p>
+<hr />
+<h2 id="launch-mapping-process">🚀 Launch Mapping Process</h2>
+<p>Start mapping using the selected algorithm:</p>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>robot_start<span class="w"> </span>2d_mapping.launch
+</code></pre></div>
+<p>Alternatively, specify the algorithm directly in the command line:</p>
+<div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>robot_start<span class="w"> </span>2d_mapping.launch<span class="w"> </span>mapping_mode:<span class="o">=</span>karto
+</code></pre></div>
+<hr />
+<h2 id="viewing-the-map-in-rviz">🖥️ Viewing the Map in RViz</h2>
+<p>Here is an example of using the Karto algorithm for mapping. The figure shows the normal running effect after the instruction starts the program:
+ <br />
+<p align="center">
+   <img src="../../imgs/image18.png" alt="button" width="400"/>
+   </p></p>
+<p>Once the process starts, open RViz to see real-time SLAM visualization. The color codes are:</p>
+<ul>
+<li><strong>White</strong> – explored free space</li>
+<li><strong>Gray</strong> – unknown areas</li>
+<li><strong>Black</strong> – obstacles or walls
+ <br />
+<p align="center">
+   <img src="../../imgs/image19.png" alt="button" width="400"/>
+   </p></li>
+</ul>
+<p>Use the remote control to guide the robot around the environment. Make sure to cover key areas for a complete map.</p>
+<hr />
+<h2 id="save-the-map">💾 Save the Map</h2>
+<p>After mapping is complete, run the following command to save the generated map:</p>
+<div class="highlight"><pre><span></span><code>sh<span class="w"> </span>~/catkin_ws/src/robot_start/sh/2d_save_map.sh
+</code></pre></div>
+<p>The saved map will be stored in:</p>
+<div class="highlight"><pre><span></span><code>~/catkin_ws/src/robot_start/map/
+</code></pre></div>
+<p>Maps are saved with the prefix <code>2d_map</code>. You can back them up or restore them later as needed.</p>
+<p align="center">
+   <img src="../../imgs/image20.png" alt="button" width="400"/>
+   </p>
+
+<blockquote>
+<p>📌 Tip: Make sure the robot revisits boundaries and major corridors to improve loop closure and map consistency.</p>
+</blockquote>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ros-startup/" class="btn btn-neutral float-left" title="Driver Startup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../lidar-navigation/" class="btn btn-neutral float-right" title="2D Navigation">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ros-startup/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../lidar-navigation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

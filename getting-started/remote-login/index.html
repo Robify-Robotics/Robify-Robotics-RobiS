@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Remote Login - RobiS Robot Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Remote Login";
+        var mkdocs_page_input_path = "getting-started\\remote-login.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RobiS Robot Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote-control/">Remote Control</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Remote Login</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#default-credentials">✅ Default Credentials</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#standard-connection-steps">🔗 Standard Connection Steps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">❗ Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#issue-multiple-robots-detected">Issue: Multiple Robots Detected</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#issue-certificate-expired">Issue: Certificate Expired</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS Navigation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/ros-startup/">Driver Startup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/lidar-mapping/">2D LiDAR Mapping</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/lidar-navigation/">2D Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/cartographer/">Cartographer Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/depth-camera/">Depth Camera</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Autoware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../autoware/3d-navigation/">3D SLAM & Navigation</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RobiS Robot Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Remote Login</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="remote-login-nomachine">🖥️ Remote Login (NoMachine)</h1>
+<p>Remotely access the RobiS robot using the built-in NoMachine server.</p>
+<h2 id="default-credentials">✅ Default Credentials</h2>
+<ul>
+<li><strong>Username</strong>: <code>robify</code></li>
+<li><strong>Password</strong>: <code>robify1234</code> (also used for <code>sudo</code>)</li>
+</ul>
+<hr />
+<h2 id="standard-connection-steps">🔗 Standard Connection Steps</h2>
+<ol>
+<li>
+<p>Install NoMachine on your computer:<br />
+<a href="https://downloads.nomachine.com/">https://downloads.nomachine.com/</a>
+ <br />
+<p align="center">
+   <img src="../../imgs/image5.png" alt="button" width="100"/>
+   </p></p>
+</li>
+<li>
+<p>Skip the corresponding operation steps according to the instructions, check them, and click OK in sequence.
+ <br />
+<p align="center">
+   <img src="../../imgs/image6.png" alt="button" width="400"/>
+   </p></p>
+</li>
+<li>
+<p>The navigation car is equipped with the corresponding NoMachine remote software (Arm8 architecture) at the factory. When the car is connected to the same LAN as the computer (mandatory), the SSH service of the current York car will be automatically displayed on the following interface. Double click to proceed.
+ <br />
+<p align="center">
+   <img src="../../imgs/image7.png" alt="button" width="400"/>
+   </p>
+</p>
+</li>
+<li>
+<p>Next, if you reinstall the NoMachine server, confirm to regenerate the SSL certificate, and select <code>OK</code>. Not skipped.
+ <br />
+<p align="center">
+   <img src="../../imgs/image8.png" alt="button" width="400"/>
+   </p>
+</p>
+</li>
+<li>
+<p>Login with: Username: <code>robify</code>   Password: <code>robify1234</code>
+ <br />
+<p align="center">
+   <img src="../../imgs/image9.png" alt="button" width="400"/>
+   </p>
+</p>
+</li>
+<li>
+<p>Then you will see some tutorial instructions for some tools, skip the corresponding operation steps according to the instructions, check them, click <code>OK</code> in sequence, and wait to enter the system.
+ <br />
+<p align="center">
+   <img src="../../imgs/image10.png" alt="button" width="400"/>
+   </p>
+</p>
+</li>
+</ol>
+<hr />
+<h2 id="troubleshooting">❗ Troubleshooting</h2>
+<h3 id="issue-multiple-robots-detected">Issue: Multiple Robots Detected</h3>
+<ol>
+<li>
+<p>Click <strong>Edit Connection</strong>
+ <br />
+<p align="center">
+   <img src="../../imgs/image11.png" alt="button" width="400"/>
+   </p></p>
+</li>
+<li>
+<p>Set correct IP manually. Port: <code>4000</code>, Protocol: <code>NX</code>
+ <br />
+<p align="center">
+   <img src="../../imgs/image12.png" alt="button" width="400"/>
+   </p></p>
+</li>
+<li>
+<p>Use <code>ifconfig</code> on the robot to check IP address.
+ <br />
+<p align="center">
+   <img src="../../imgs/image13.png" alt="button" width="400"/>
+   </p></p>
+</li>
+<li>
+<p>After switching IP, connecting again will prompt for IP address change. Select <code>[OK]</code>
+ <br />
+<p align="center">
+   <img src="../../imgs/image14.png" alt="button" width="400"/>
+   </p></p>
+</li>
+</ol>
+<h3 id="issue-certificate-expired">Issue: Certificate Expired</h3>
+<p align="center">
+   <img src="../../imgs/image15.png" alt="button" width="400"/>
+   </p>
+<p>Reinstall NoMachine on the robot:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>nomachine-enterprise-desktop
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>nomachine_8.16.1_1_arm64.deb
+</code></pre></div>
+<p>Make sure the <code>.deb</code> file is in the correct directory.</p>
+<hr />
+<blockquote>
+<p>🧠 Tip: If the touch screen is unresponsive on first login, press Enter before typing the password.</p>
+</blockquote>
+<!-- !!! tip "Quick Tip"
+    Use `roslaunch robot_start robot_start.launch` to start all drivers at once.
+
+!!! warning "Battery Warning"
+    Always disconnect the battery when servicing the robot.
+
+!!! note "Controller Sleep Mode"
+    The PS2 controller enters sleep after 5 minutes of inactivity.
+
+!!! info
+    NoMachine requires the robot and your PC to be on the **same LAN**. -->
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../remote-control/" class="btn btn-neutral float-left" title="Remote Control"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../navigation/ros-startup/" class="btn btn-neutral float-right" title="Driver Startup">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../remote-control/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../navigation/ros-startup/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

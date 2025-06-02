@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Cartographer Navigation - RobiS Robot Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Cartographer Navigation";
+        var mkdocs_page_input_path = "navigation\\cartographer.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RobiS Robot Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/remote-control/">Remote Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../getting-started/remote-login/">Remote Login</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS Navigation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../ros-startup/">Driver Startup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lidar-mapping/">2D LiDAR Mapping</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../lidar-navigation/">2D Navigation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Cartographer Navigation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#cartographer-2d-mapping">🗺️ Cartographer 2D Mapping</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#launch-cartographer-slam">🚀 Launch Cartographer SLAM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#visualize-in-rviz">🖥️ Visualize in RViz</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#save-the-map">💾 Save the Map</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cartographer-navigation">🧭 Cartographer Navigation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#launch-navigation-with-cartographer-slam">🚀 Launch Navigation with Cartographer SLAM</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-initial-pose-in-rviz">🧭 Set Initial Pose in RViz</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#set-a-navigation-goal">🎯 Set a Navigation Goal</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#navigation-parameter-files">⚙️ Navigation Parameter Files</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../depth-camera/">Depth Camera</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Autoware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../autoware/3d-navigation/">3D SLAM & Navigation</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RobiS Robot Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">ROS Navigation</li>
+      <li class="breadcrumb-item active">Cartographer Navigation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="cartographer-2d-mapping-and-navigation">🧭 Cartographer 2D Mapping and Navigation</h1>
+<p>RobiS supports the <strong>Cartographer</strong> SLAM algorithm developed by Google, in addition to Karto, GMapping, and Hector SLAM. Cartographer offers higher mapping accuracy and integrated localization, but it requires more computational power.</p>
+<hr />
+<h2 id="cartographer-2d-mapping">🗺️ Cartographer 2D Mapping</h2>
+<h3 id="launch-cartographer-slam">🚀 Launch Cartographer SLAM</h3>
+<p>After activating the chassis, LiDAR, and IMU drivers, begin Cartographer mapping with:</p>
+<p><div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>robot_start<span class="w"> </span>carto_2d_mapping.launch
+</code></pre></div>
+ <br />
+<p align="center">
+   <img src="../../imgs/image24.png" alt="button" width="400"/>
+   </p></p>
+<h3 id="visualize-in-rviz">🖥️ Visualize in RViz</h3>
+<p>Open RViz to observe mapping progress:</p>
+<ul>
+<li><strong>White</strong> = explored areas</li>
+<li><strong>Gray</strong> = unknown regions</li>
+<li><strong>Black</strong> = walls or obstacles
+ <br />
+<p align="center">
+   <img src="../../imgs/image25.png" alt="button" width="400"/>
+   </p></li>
+</ul>
+<p>Navigate the robot through the environment using the remote control to build a detailed map.</p>
+<h3 id="save-the-map">💾 Save the Map</h3>
+<p>Note: Cartographer mapping stops once a map is saved (unlike GMapping or Karto which allow continuation). To save the map:</p>
+<div class="highlight"><pre><span></span><code>sh<span class="w"> </span>~/catkin_ws/src/robot_start/sh/save_map.sh
+</code></pre></div>
+<p>The map files are stored in:</p>
+<div class="highlight"><pre><span></span><code>~/catkin_ws/src/robot_start/map/
+</code></pre></div>
+<p>Files are named <code>map.*</code> (e.g., <code>map.pgm</code>, <code>map.yaml</code>), and can be backed up or reused.
+ <br />
+<p align="center">
+   <img src="../../imgs/image26.png" alt="button" width="400"/>
+   </p></p>
+<hr />
+<h2 id="cartographer-navigation">🧭 Cartographer Navigation</h2>
+<p>After saving the map, you can use it for navigation using Cartographer’s built-in localization.</p>
+<h3 id="launch-navigation-with-cartographer-slam">🚀 Launch Navigation with Cartographer SLAM</h3>
+<p>Start Cartographer navigation using:</p>
+<p><div class="highlight"><pre><span></span><code>roslaunch<span class="w"> </span>robot_start<span class="w"> </span>teb_navigation_slam.launch
+</code></pre></div>
+ <br />
+<p align="center">
+   <img src="../../imgs/image27.png" alt="button" width="400"/>
+   </p></p>
+<p>This uses the <code>move_base</code> package for planning, but relies on Cartographer for localization (instead of AMCL).</p>
+<h3 id="set-initial-pose-in-rviz">🧭 Set Initial Pose in RViz</h3>
+<ol>
+<li>Click <code>2D Pose Estimate</code> in RViz.</li>
+<li>Click and drag on the map where the robot starts, matching its real-world position and heading.</li>
+<li>The LiDAR scan should overlap well with map features.
+ <br />
+<p align="center">
+   <img src="../../imgs/image28.png" alt="button" width="400"/>
+   </p></li>
+</ol>
+<h3 id="set-a-navigation-goal">🎯 Set a Navigation Goal</h3>
+<ol>
+<li>Use <code>2D Nav Goal</code> in RViz.</li>
+<li>Click and drag to set a goal location and heading.</li>
+<li>The robot will follow the path using TEB local planning and avoid obstacles dynamically.
+ <br />
+<p align="center">
+   <img src="../../imgs/image29.png" alt="button" width="400"/>
+   </p></li>
+</ol>
+<hr />
+<h2 id="navigation-parameter-files">⚙️ Navigation Parameter Files</h2>
+<p>Parameters for <code>move_base</code> and Cartographer navigation are located in:</p>
+<div class="highlight"><pre><span></span><code>~/catkin_ws/src/robot_start/param/
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>File Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>costmap_common_params.yaml</code></td>
+<td>Base configuration for costmaps</td>
+</tr>
+<tr>
+<td><code>global_planner_params.yaml</code></td>
+<td>Dijkstra-based global path planner</td>
+</tr>
+<tr>
+<td><code>local_costmap_params.yaml</code></td>
+<td>Settings for local obstacle avoidance</td>
+</tr>
+<tr>
+<td><code>move_base_params.yaml</code></td>
+<td>Recovery behaviors and planners</td>
+</tr>
+<tr>
+<td><code>teb_local_planner.yaml</code></td>
+<td>TEB local planner configuration</td>
+</tr>
+<tr>
+<td><code>dwa_local_planner.yaml</code></td>
+<td>Alternative DWA planner config</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🛠️ Adjust these configs for performance, speed, or safety constraints based on your environment and platform.</p>
+</blockquote>
+<hr />
+<p>Once configured, Cartographer-based navigation can deliver precise, stable motion through complex mapped environments.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../lidar-navigation/" class="btn btn-neutral float-left" title="2D Navigation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../depth-camera/" class="btn btn-neutral float-right" title="Depth Camera">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../lidar-navigation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../depth-camera/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

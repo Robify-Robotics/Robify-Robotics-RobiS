@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Introduction - RobiS Robot Manual</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Introduction";
+        var mkdocs_page_input_path = "getting-started\\introduction.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RobiS Robot Manual
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#robis-robot-specifications">📋 RobiS Robot Specifications</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#robix-robot-specifications">🦾 RobiX Robot Specifications</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote-control/">Remote Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../remote-login/">Remote Login</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">ROS Navigation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/ros-startup/">Driver Startup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/lidar-mapping/">2D LiDAR Mapping</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/lidar-navigation/">2D Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/cartographer/">Cartographer Navigation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../navigation/depth-camera/">Depth Camera</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Autoware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../autoware/3d-navigation/">3D SLAM & Navigation</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RobiS Robot Manual</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">Introduction</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="introduction-to-robis-and-robix-robots">🤖 Introduction to RobiS and RobiX Robots</h1>
+<p>Welcome to the RobiS and RobiX robot documentation. These robots are designed for research, education, and autonomous mobility scenarios with different configurations and onboard capabilities.</p>
+<hr />
+<h2 id="robis-robot-specifications">📋 RobiS Robot Specifications</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimensions (L × W × H)</td>
+<td>≤ 450 × 380 × 390 mm</td>
+</tr>
+<tr>
+<td>Chassis Weight</td>
+<td>≤ 20 kg</td>
+</tr>
+<tr>
+<td>Drive Type</td>
+<td>Four-wheel differential</td>
+</tr>
+<tr>
+<td>Material</td>
+<td>Metal construction</td>
+</tr>
+<tr>
+<td>Operating Temperature</td>
+<td>-10°C to 60°C</td>
+</tr>
+<tr>
+<td>Obstacle Height (Step)</td>
+<td>30 mm</td>
+</tr>
+<tr>
+<td>Motor Model</td>
+<td>MD36 35W brushed DC motor</td>
+</tr>
+<tr>
+<td>Encoder Resolution</td>
+<td>500 PPR</td>
+</tr>
+<tr>
+<td>Gear Ratio</td>
+<td>1:51</td>
+</tr>
+<tr>
+<td>Motor Current</td>
+<td>0.3A (no load), 2.3A (rated), 7A (stall)</td>
+</tr>
+<tr>
+<td>Battery Type</td>
+<td>Lithium Battery</td>
+</tr>
+<tr>
+<td>Battery Capacity</td>
+<td>24V 12AH</td>
+</tr>
+<tr>
+<td>Battery Life</td>
+<td>≤ 2 hours</td>
+</tr>
+<tr>
+<td>Max Speed</td>
+<td>≤ 1.5 m/s</td>
+</tr>
+<tr>
+<td>Turning Radius</td>
+<td>In-place rotation (0°)</td>
+</tr>
+<tr>
+<td>Communication Interface</td>
+<td>RS232 Serial</td>
+</tr>
+<tr>
+<td>OS &amp; Software Stack</td>
+<td>ROS / Autoware</td>
+</tr>
+<tr>
+<td>Onboard Computer</td>
+<td>Jetson Orin Nano 4GB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="robix-robot-specifications">🦾 RobiX Robot Specifications</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dimensions (L × W × H)</td>
+<td>995 × 715 × 740 mm</td>
+</tr>
+<tr>
+<td>Chassis Weight</td>
+<td>≥ 80 kg</td>
+</tr>
+<tr>
+<td>Drive Type</td>
+<td>Four-wheel differential</td>
+</tr>
+<tr>
+<td>Material</td>
+<td>Q235 steel</td>
+</tr>
+<tr>
+<td>Ground Clearance</td>
+<td>105 mm</td>
+</tr>
+<tr>
+<td>Wheel Track Width</td>
+<td>540 mm</td>
+</tr>
+<tr>
+<td>Wheel Diameter</td>
+<td>315 mm</td>
+</tr>
+<tr>
+<td>Wheelbase</td>
+<td>550 mm</td>
+</tr>
+<tr>
+<td>IP Rating</td>
+<td>IP54</td>
+</tr>
+<tr>
+<td>Operating Temperature</td>
+<td>-10°C to 60°C</td>
+</tr>
+<tr>
+<td>Motor Power</td>
+<td>400W × 4</td>
+</tr>
+<tr>
+<td>Gear Ratio</td>
+<td>1:40</td>
+</tr>
+<tr>
+<td>Battery Type</td>
+<td>Lithium Battery</td>
+</tr>
+<tr>
+<td>Battery Capacity</td>
+<td>24V 60AH</td>
+</tr>
+<tr>
+<td>Battery Life</td>
+<td>≤ 6 hours</td>
+</tr>
+<tr>
+<td>Battery BMS Communication</td>
+<td>RS485 supported</td>
+</tr>
+<tr>
+<td>Encoder Resolution</td>
+<td>1000 PPR</td>
+</tr>
+<tr>
+<td>Max Speed</td>
+<td>≤ 1.2 m/s</td>
+</tr>
+<tr>
+<td>Turning Radius</td>
+<td>In-place rotation (0°)</td>
+</tr>
+<tr>
+<td>Vertical Load Capacity</td>
+<td>80 kg</td>
+</tr>
+<tr>
+<td>Slope Climbing Ability</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>Obstacle Height (Step)</td>
+<td>10 cm</td>
+</tr>
+<tr>
+<td>Communication Interface</td>
+<td>RS232 Serial</td>
+</tr>
+<tr>
+<td>OS &amp; Software Stack</td>
+<td>Ubuntu 18.04 / ROS / Autoware</td>
+</tr>
+<tr>
+<td>Onboard Computer</td>
+<td>Intel i7 + Nvidia GTX 1650</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>ℹ️ Continue to the <a href="../remote-control/">Remote Control Setup</a> section to get started with operation.</p>
+</blockquote>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../remote-control/" class="btn btn-neutral float-right" title="Remote Control">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../remote-control/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
