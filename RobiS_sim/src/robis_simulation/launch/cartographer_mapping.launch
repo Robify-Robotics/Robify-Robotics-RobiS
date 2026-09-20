@@ -1,0 +1,30 @@
+<launch>
+  <arg name="start_gazebo" default="true"/>
+  <arg name="gazebo_gui" default="false"/>
+  <arg name="resolution" default="0.05"/>
+  <arg name="start_rviz" default="true"/>
+  <arg name="display" default="$(optenv DISPLAY :0)"/>
+  <arg name="xauthority" default="$(env HOME)/.Xauthority"/>
+
+  <group if="$(arg start_gazebo)">
+    <include file="$(find robis_simulation)/launch/gazebo.launch">
+      <arg name="gui" value="$(arg gazebo_gui)"/>
+    </include>
+  </group>
+
+  <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" output="screen"
+        args="-configuration_directory $(find robis_simulation)/config -configuration_basename cartographer_2d.lua">
+    <remap from="scan" to="/scan"/>
+    <remap from="odom" to="/odom"/>
+  </node>
+
+  <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node" name="occupancy_grid_node" output="screen"
+        args="-resolution $(arg resolution)"/>
+
+  <node if="$(arg start_rviz)" pkg="rviz" type="rviz" name="rviz" output="screen"
+        args="-d $(find robis_simulation)/config/rviz/cartographer_mapping.rviz">
+    <env name="DISPLAY" value="$(arg display)"/>
+    <env name="LIBGL_ALWAYS_SOFTWARE" value="1"/>
+    <env name="XAUTHORITY" value="$(arg xauthority)"/>
+  </node>
+</launch>

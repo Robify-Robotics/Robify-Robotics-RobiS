@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<robot name="robis" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="pi_const" value="3.141592653589793"/>
+
+  <!-- Dimensions are in meters. -->
+  <xacro:property name="body_length" value="0.4235"/>
+  <xacro:property name="body_width" value="0.268"/>
+  <xacro:property name="body_height" value="0.06678"/>
+  <xacro:property name="body_mass" value="12.0"/>
+
+  <xacro:property name="wheel_radius" value="0.063"/>
+  <xacro:property name="wheel_diameter" value="0.126"/>
+  <xacro:property name="wheel_width" value="0.041"/>
+  <xacro:property name="wheel_mass" value="0.6"/>
+  <xacro:property name="wheel_x" value="0.152"/>
+  <xacro:property name="wheel_y" value="0.154"/>
+
+  <xacro:property name="riser_length" value="0.120"/>
+  <xacro:property name="riser_width" value="0.100"/>
+  <xacro:property name="riser_height" value="0.174"/>
+  <xacro:property name="riser_mass" value="0.4"/>
+
+  <xacro:property name="lidar_x" value="0.135"/>
+  <xacro:property name="lidar_radius" value="0.051"/>
+  <xacro:property name="lidar_height" value="0.085"/>
+  <xacro:property name="lidar_mass" value="0.35"/>
+
+  <xacro:property name="base_link_z" value="${wheel_radius + body_height / 2.0}"/>
+  <xacro:property name="wheel_z" value="${-body_height / 2.0}"/>
+  <xacro:property name="riser_z" value="${body_height / 2.0 + riser_height / 2.0}"/>
+  <xacro:property name="lidar_z" value="${body_height / 2.0 + riser_height + lidar_height / 2.0}"/>
+
+  <xacro:macro name="box_inertia" params="mass x y z">
+    <inertial>
+      <mass value="${mass}"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="${mass * (y*y + z*z) / 12.0}" ixy="0" ixz="0"
+               iyy="${mass * (x*x + z*z) / 12.0}" iyz="0"
+               izz="${mass * (x*x + y*y) / 12.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="cylinder_inertia_z" params="mass radius length">
+    <inertial>
+      <mass value="${mass}"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="${mass * (3.0 * radius * radius + length * length) / 12.0}" ixy="0" ixz="0"
+               iyy="${mass * (3.0 * radius * radius + length * length) / 12.0}" iyz="0"
+               izz="${mass * radius * radius / 2.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <material name="robis_body_blue">
+    <color rgba="0.05 0.24 0.55 1.0"/>
+  </material>
+  <material name="robis_dark">
+    <color rgba="0.02 0.02 0.02 1.0"/>
+  </material>
+  <material name="robis_lidar_green">
+    <color rgba="0.0 0.55 0.35 1.0"/>
+  </material>
+  <material name="robis_riser_gray">
+    <color rgba="0.45 0.48 0.50 1.0"/>
+  </material>
+
+  <link name="base_footprint"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 ${base_link_z}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+      <material name="robis_body_blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia mass="${body_mass}" x="${body_length}" y="${body_width}" z="${body_height}"/>
+  </link>
+
+  <xacro:macro name="wheel" params="prefix x y">
+    <link name="${prefix}_wheel_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi_const/2.0} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="robis_dark"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi_const/2.0} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+      </collision>
+      <xacro:cylinder_inertia_z mass="${wheel_mass}" radius="${wheel_radius}" length="${wheel_width}"/>
+    </link>
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${prefix}_wheel_link"/>
+      <origin xyz="${x} ${y} ${wheel_z}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="20" velocity="30"/>
+      <dynamics damping="0.05" friction="0.0"/>
+    </joint>
+    <gazebo reference="${prefix}_wheel_link">
+      <mu1>1.2</mu1>
+      <mu2>1.2</mu2>
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:wheel prefix="front_left"  x="${ wheel_x}" y="${ wheel_y}"/>
+  <xacro:wheel prefix="front_right" x="${ wheel_x}" y="${-wheel_y}"/>
+  <xacro:wheel prefix="rear_left"   x="${-wheel_x}" y="${ wheel_y}"/>
+  <xacro:wheel prefix="rear_right"  x="${-wheel_x}" y="${-wheel_y}"/>
+
+  <link name="lidar_riser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${riser_length} ${riser_width} ${riser_height}"/>
+      </geometry>
+      <material name="robis_riser_gray"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="${riser_length} ${riser_width} ${riser_height}"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia mass="${riser_mass}" x="${riser_length}" y="${riser_width}" z="${riser_height}"/>
+  </link>
+
+  <joint name="lidar_riser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_riser_link"/>
+    <origin xyz="${lidar_x} 0 ${riser_z}" rpy="0 0 0"/>
+  </joint>
+
+  <link name="laser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+      </geometry>
+      <material name="robis_lidar_green"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+      </geometry>
+    </collision>
+    <xacro:cylinder_inertia_z mass="${lidar_mass}" radius="${lidar_radius}" length="${lidar_height}"/>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+    <origin xyz="${lidar_x} 0 ${lidar_z}" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="lidar_riser_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="laser_link">
+    <material>Gazebo/Green</material>
+    <sensor name="laser_scan" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159265</min_angle>
+            <max_angle>3.14159265</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.12</min>
+          <max>12.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="robis_skid_steer_drive" filename="libgazebo_ros_skid_steer_drive.so">
+      <robotNamespace>/</robotNamespace>
+      <updateRate>50.0</updateRate>
+      <leftFrontJoint>front_left_wheel_joint</leftFrontJoint>
+      <rightFrontJoint>front_right_wheel_joint</rightFrontJoint>
+      <leftRearJoint>rear_left_wheel_joint</leftRearJoint>
+      <rightRearJoint>rear_right_wheel_joint</rightRearJoint>
+      <wheelSeparation>${2.0 * wheel_y}</wheelSeparation>
+      <wheelDiameter>${wheel_diameter}</wheelDiameter>
+      <torque>20.0</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_footprint</robotBaseFrame>
+      <broadcastTF>true</broadcastTF>
+      <covariance_x>0.0001</covariance_x>
+      <covariance_y>0.0001</covariance_y>
+      <covariance_yaw>0.01</covariance_yaw>
+    </plugin>
+  </gazebo>
+</robot>

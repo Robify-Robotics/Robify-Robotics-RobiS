@@ -1,0 +1,22 @@
+<launch>
+  <arg name="start_gazebo" default="true"/>
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="map_file" default="$(find robis_simulation)/maps/empty_map.yaml"/>
+
+  <group if="$(arg start_gazebo)">
+    <include file="$(find robis_simulation)/launch/gazebo.launch">
+      <arg name="gui" value="$(arg gazebo_gui)"/>
+    </include>
+  </group>
+
+  <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" output="screen"/>
+
+  <node pkg="move_base" type="move_base" name="move_base" output="screen" clear_params="true">
+    <rosparam file="$(find robis_simulation)/config/move_base/costmap_common_params.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find robis_simulation)/config/move_base/costmap_common_params.yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find robis_simulation)/config/move_base/global_costmap_params.yaml" command="load"/>
+    <rosparam file="$(find robis_simulation)/config/move_base/local_costmap_params.yaml" command="load"/>
+    <rosparam file="$(find robis_simulation)/config/move_base/move_base_params.yaml" command="load"/>
+    <rosparam file="$(find robis_simulation)/config/move_base/teb_local_planner_params.yaml" command="load"/>
+  </node>
+</launch>

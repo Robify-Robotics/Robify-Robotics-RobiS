@@ -1,0 +1,25 @@
+<launch>
+  <arg name="world" default="$(find robis_simulation)/worlds/empty.world"/>
+  <arg name="paused" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.05"/>
+
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find robis_simulation)/urdf/robis.urdf.xacro'"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+  </include>
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_robis" output="screen"
+        args="-urdf -param robot_description -model robis -x $(arg x) -y $(arg y) -z $(arg z)"/>
+
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen"/>
+</launch>

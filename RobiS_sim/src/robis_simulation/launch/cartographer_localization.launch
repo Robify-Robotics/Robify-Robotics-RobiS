@@ -1,0 +1,11 @@
+<launch>
+  <arg name="pbstream_file" default="$(find robis_simulation)/maps/robis_map.pbstream"/>
+
+  <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" output="screen"
+        args="-configuration_directory $(find robis_simulation)/config
+              -configuration_basename cartographer_2d_localization.lua
+              -load_state_filename $(arg pbstream_file)">
+    <remap from="scan" to="/scan"/>
+    <remap from="odom" to="/odom"/>
+  </node>
+</launch>
